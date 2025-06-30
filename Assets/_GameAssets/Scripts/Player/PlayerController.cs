@@ -180,7 +180,7 @@ public class PlayerController : MonoBehaviour
     {
         return _isSliding;
     }
-    
+
     public void SetMovementSpeed(float speed, float duration)
     {
         _movementSpeed += speed;
@@ -194,12 +194,22 @@ public class PlayerController : MonoBehaviour
     public void SetJumpForce(float force, float duration)
     {
         _jumpForce += force;
-        Invoke(nameof(ResetJumpForce),duration);
+        Invoke(nameof(ResetJumpForce), duration);
     }
     private void ResetJumpForce()
     {
         _jumpForce = _startingJumpForce;
     }
+
+    public Rigidbody GetPlayerRigidbody()
+    {
+        return _playerRigidbody;
+    }
+
+
+
+
+
     #endregion
 
 }
