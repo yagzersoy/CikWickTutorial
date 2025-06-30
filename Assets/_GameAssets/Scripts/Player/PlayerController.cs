@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-public event Action OnPlayerJumped;
+    public event Action OnPlayerJumped;
     [Header("References")]
     [SerializeField] private Transform _oriantationTransform;
     [Header("Movement Settings")]
@@ -31,7 +31,7 @@ public event Action OnPlayerJumped;
     private StateController _stateController;
 
     private Rigidbody _playerRigidbody;
-
+    private float _startingMovementSpeed, _startingJumpForce;
     private float _horizontalInput, _verticalInput;
     private bool _isSliding;
 
@@ -41,6 +41,8 @@ public event Action OnPlayerJumped;
         _stateController = GetComponent<StateController>();
         _playerRigidbody = GetComponent<Rigidbody>();
         _playerRigidbody.freezeRotation = true;
+        _startingJumpForce = _jumpForce;
+        _startingMovementSpeed = _movementSpeed;
     }
     void Update()
     {
@@ -61,14 +63,14 @@ public event Action OnPlayerJumped;
         if (Input.GetKeyDown(_slideKey))
         {
             _isSliding = true;
-           
+
 
         }
 
         else if (Input.GetKeyDown(_movementKey))
         {
             _isSliding = false;
-           
+
         }
 
         else if (Input.GetKey(_jumpKey) && _canJump && IsGrounded())
@@ -116,10 +118,10 @@ public event Action OnPlayerJumped;
             PlayerState.Move => 1f,
             PlayerState.Slide => _slideMultipler,
             PlayerState.Jump => _airMultiplier,
-            _ =>1f
+            _ => 1f
         };
-         _playerRigidbody.AddForce(_movementDirection.normalized * _movementSpeed * forceMultiplier, ForceMode.Force);
-     
+        _playerRigidbody.AddForce(_movementDirection.normalized * _movementSpeed * forceMultiplier, ForceMode.Force);
+
     }
     private void SetPlayerDrag()
     {
@@ -128,7 +130,7 @@ public event Action OnPlayerJumped;
             PlayerState.Move => _groundDrag,
             PlayerState.Slide => _slideDrag,
             PlayerState.Jump => _airDrag,
-            _ =>_playerRigidbody.linearDamping
+            _ => _playerRigidbody.linearDamping
         };
         if (_isSliding)
         {
@@ -153,7 +155,7 @@ public event Action OnPlayerJumped;
     private void SetPlayerJumping()
     {
         OnPlayerJumped?.Invoke();
-        
+
         _playerRigidbody.linearVelocity = new Vector3(_playerRigidbody.linearVelocity.x, 0, _playerRigidbody.linearVelocity.z);
         _playerRigidbody.AddForce(transform.up * _jumpForce, ForceMode.Impulse);
     }
@@ -162,6 +164,8 @@ public event Action OnPlayerJumped;
         _canJump = true;
     }
 
+
+    #region Helper Functions
     private bool IsGrounded()
     {
         return Physics.Raycast(transform.position, Vector3.down, _playerHeight * 0.5f + 0.2f, _groundLayer);
@@ -172,7 +176,30 @@ public event Action OnPlayerJumped;
         return _movementDirection.normalized;
     }
 
-    private bool IsSliding() {
+    private bool IsSliding()
+    {
         return _isSliding;
     }
+    
+    public void SetMovementSpeed(float speed, float duration)
+    {
+        _movementSpeed += speed;
+        Invoke(nameof(ResetMovementSpeed), duration);
+
+    }
+    private void ResetMovementSpeed()
+    {
+        _movementSpeed = _startingMovementSpeed;
+    }
+    public void SetJumpForce(float force, float duration)
+    {
+        _jumpForce += force;
+        Invoke(nameof(ResetJumpForce),duration);
+    }
+    private void ResetJumpForce()
+    {
+        _jumpForce = _startingJumpForce;
+    }
+    #endregion
+
 }
