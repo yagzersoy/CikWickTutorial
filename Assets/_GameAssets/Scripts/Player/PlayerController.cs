@@ -116,7 +116,7 @@ public class PlayerController : MonoBehaviour
             _stateController.ChangeState(newState);
             OnPlayerStateChanged?.Invoke(newState);
         }
-        Debug.Log(newState);
+        
     }
 
 
