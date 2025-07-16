@@ -4556,7 +4556,7 @@ MonoBehaviour:
   _playerHeight: 1
   _groundLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 320
   _groundDrag: 5
 --- !u!114 &819443965
 MonoBehaviour:
@@ -4659,6 +4659,7 @@ GameObject:
   - component: {fileID: 835260282}
   - component: {fileID: 835260284}
   - component: {fileID: 835260285}
+  - component: {fileID: 835260288}
   m_Layer: 0
   m_Name: Cat
   m_TagString: Untagged
@@ -4681,7 +4682,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -4695,14 +4696,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 835260281}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -9, y: -6.347116, z: 40}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5741049350760427726}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &835260284
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4777,11 +4778,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81c180d1748bd0a4596de2b3fd85dfa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerController: {fileID: 819443964}
+  _playerTransform: {fileID: 819443961}
   _defaultSpeed: 5
   _chaseSpeed: 7
   _patrolRadius: 28
   _waitTime: 6.75
   _maxDestinationAttempts: 50
+  _chaseDistanceThreshold: 1.5
+  _chaseDistance: 2
+--- !u!114 &835260288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 835260281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe32b6e790c977a419b31a0d5db623ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _catAnimator: {fileID: 5741049350760427727}
 --- !u!1 &838949484
 GameObject:
   m_ObjectHideFlags: 0
@@ -12479,6 +12497,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5741049350760427726}
+  - component: {fileID: 5741049350760427727}
   m_Layer: 0
   m_Name: CatVisual
   m_TagString: Untagged
@@ -12622,7 +12641,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4965110128580733556}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -12630,7 +12649,29 @@ Transform:
   - {fileID: 2412276862714438755}
   - {fileID: 6750861508448196005}
   m_Father: {fileID: 835260283}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!95 &5741049350760427727
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4965110128580733556}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c23472b818daf31409ebbd817a09e04e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &5756717792409229834
 Transform:
   m_ObjectHideFlags: 0
