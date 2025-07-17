@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
 
     private void CatController_OnCatCatched()
     {
-        _playerHealthUI.AnimateDamageForAll();
+        _playerHealthUI.AnimateDamageForAll();  
         StartCoroutine(OnGameOver());
 
     }
