@@ -20,6 +20,7 @@ private RectTransform _playerBoosterTransform;
 
     public void Collect()
     {
+        CameraShake.Instance.ShakeCamera(0.5f, 0.5f);
         _playerController.SetMovementSpeed(_wheatDesignSO.IncreaseDecreaseMultipler, _wheatDesignSO.ResetBoostDuration);
         _playerStateUI.PlayerBoosterUIAnimations(_playerBoosterTransform, _playerBoosterImage,
                  _playerStateUI.GetRottenBoosterWheatImage, _wheatDesignSO.ActiveSprite, _wheatDesignSO.PassiveSprite,
