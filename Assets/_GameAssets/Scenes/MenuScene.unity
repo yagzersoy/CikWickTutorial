@@ -724,6 +724,10 @@ PrefabInstance:
       propertyPath: transitionImage
       value: 
       objectReference: {fileID: -1777802642, guid: 3cdbc7ed66db2cb4eb48c8e644bb73ee, type: 3}
+    - target: {fileID: 5945500752415300767, guid: 60e223b373cd9a347945535b62afe6ed, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8746815213132877900, guid: 60e223b373cd9a347945535b62afe6ed, type: 3}
       propertyPath: m_Name
       value: TransitionManager
