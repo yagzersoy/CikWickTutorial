@@ -1,4 +1,7 @@
+using System.Transactions;
 using DG.Tweening;
+using MaskTransitions;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,6 +31,11 @@ public class SettingsUI : MonoBehaviour
 
         _settingsButton.onClick.AddListener(OnSettingsButtonClikced);
         _resumeButton.onClick.AddListener(OnResumeButtonClicked);
+
+        _mainmenuButton.onClick.AddListener(() =>
+        {
+            TransitionManager.Instance.LoadLevel(Consts.SceneNames.MENU_SCENE);
+        });
     }
 
     private void OnSettingsButtonClikced()
