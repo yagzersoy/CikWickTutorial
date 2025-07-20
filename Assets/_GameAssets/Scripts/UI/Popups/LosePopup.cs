@@ -15,18 +15,22 @@ public class LosePopup : MonoBehaviour
     [SerializeField] private TimerUI _timerUI;
     private void OnEnable()
     {
+        AudioManager.Instance.Play(SoundType.LoseSound);
+        BackgroundMusic.Instance.PlayBackgroundMusic(false);
         _timerText.text = _timerUI.GetFinalTime();
 
         _tryAgainButton.onClick.AddListener(OneTryAgainButtonClicked);
 
         _mainMenuButton.onClick.AddListener(() =>
         {
+            AudioManager.Instance.Play(SoundType.TransitionSound);
              TransitionManager.Instance.LoadLevel(Consts.SceneNames.MENU_SCENE);
          });
     }
 
     private void OneTryAgainButtonClicked()
     {
+        AudioManager.Instance.Play(SoundType.TransitionSound);
         TransitionManager.Instance.LoadLevel(Consts.SceneNames.GAME_SCENE);
 
     }

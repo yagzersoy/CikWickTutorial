@@ -24,13 +24,14 @@ public class GoldWheatCollectible : MonoBehaviour,ICollectible
     public void Collect()
     {
         _playerController.SetMovementSpeed(_wheatDesignSO.IncreaseDecreaseMultipler, _wheatDesignSO.ResetBoostDuration);
-       
+
         _playerStateUI.PlayerBoosterUIAnimations(_playerBoosterTransform, _playerBoosterImage,
          _playerStateUI.GetGoldBoosterWheatImage, _wheatDesignSO.ActiveSprite, _wheatDesignSO.PassiveSprite,
          _wheatDesignSO.ActiveWheatSprite, _wheatDesignSO.PassiveWheatSprite, _wheatDesignSO.ResetBoostDuration);
 
         CameraShake.Instance.ShakeCamera(0.5f, 0.5f);
         Destroy(gameObject);
+        AudioManager.Instance.Play(SoundType.PickupGoodSound);
     }
 }
 

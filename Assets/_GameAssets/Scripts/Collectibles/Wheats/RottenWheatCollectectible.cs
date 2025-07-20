@@ -25,7 +25,7 @@ private RectTransform _playerBoosterTransform;
         _playerStateUI.PlayerBoosterUIAnimations(_playerBoosterTransform, _playerBoosterImage,
                  _playerStateUI.GetRottenBoosterWheatImage, _wheatDesignSO.ActiveSprite, _wheatDesignSO.PassiveSprite,
                  _wheatDesignSO.ActiveWheatSprite, _wheatDesignSO.PassiveWheatSprite, _wheatDesignSO.ResetBoostDuration);
-
+        AudioManager.Instance.Play(SoundType.PickupBadSound);
         Destroy(gameObject);
     }
 }
